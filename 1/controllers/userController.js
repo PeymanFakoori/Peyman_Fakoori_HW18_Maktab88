@@ -2,15 +2,9 @@ const url = require("url");
 const User = require("../models/UserModel");
 
 const signUpPage = (req, res, next) => {
+  if (req.session.user) return res.redirect("/user/profile");
+
   res.render("pages/signUp");
-};
-
-const loginPage = (req, res, next) => {
-  res.render("pages/login");
-};
-
-const profilePage = (req, res, next) => {
-  res.render("pages/profile");
 };
 
 const registration = async (req, res, next) => {
@@ -37,6 +31,12 @@ const registration = async (req, res, next) => {
     );
   }
 };
+
+const loginPage = (req, res, next) => {
+  if (req.session.user) return res.redirect("/user/profile");
+  res.render("pages/login");
+};
+
 const getLogin = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
@@ -60,10 +60,23 @@ const getLogin = async (req, res, next) => {
   }
 };
 
+const profilePage = (req, res, next) => {
+  if (!req.session.user) return res.redirect("/user/login");
+
+  res.render("pages/profile", { user: req.session.user });
+};
+
+const logout = (req, res, next) => {
+  req.session.destroy();
+
+  res.redirect("/user/login");
+};
+
 module.exports = {
   signUpPage,
   loginPage,
   profilePage,
   registration,
   getLogin,
+  logout,
 };

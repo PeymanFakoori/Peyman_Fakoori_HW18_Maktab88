@@ -9,7 +9,16 @@
 </head>
 
 <body>
-    <p>Hello user!</p>
+    <p>Hello <%= user.username %>!</p>
+
+
+
+    <br>
+    <br>
+
+    <form action="/user/logout" method="get">
+        <input type="submit" value="Logout">
+    </form>
 </body>
 
 </html>
