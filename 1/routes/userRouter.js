@@ -5,14 +5,15 @@ const {
   signUpPage,
   registration,
   loginPage,
-  dashbordPage,
+  profilePage,
+  getLogin,
 } = require("../controllers/userController");
 
 router.get("/signup", signUpPage);
 router.post("/signup", registration);
 
 router.get("/login", loginPage);
-
-router.get("/dashboard", dashbordPage);
+router.post("/login", getLogin);
+router.get("/profile", profilePage);
 
 module.exports = router;

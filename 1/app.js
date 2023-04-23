@@ -4,6 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 const userRouter = require("./routes/userRouter");
 
@@ -21,6 +22,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(
+  session({
+    secret: "mySecrectKeyForAuthProject",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false,
+  })
+);
+
+app.use((req, res, next) => {
+  console.log(req.session);
+  next();
+});
 
 app.use("/user", userRouter);
 

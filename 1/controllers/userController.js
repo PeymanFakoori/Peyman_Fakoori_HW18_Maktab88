@@ -9,8 +9,8 @@ const loginPage = (req, res, next) => {
   res.render("pages/login");
 };
 
-const dashbordPage = (req, res, next) => {
-  res.render("pages/dashboard");
+const profilePage = (req, res, next) => {
+  res.render("pages/profile");
 };
 
 const registration = async (req, res, next) => {
@@ -37,5 +37,33 @@ const registration = async (req, res, next) => {
     );
   }
 };
+const getLogin = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ username: req.body.username });
+    if (!user) return res.redirect(`/user/login?errorMessage=User not found!`);
 
-module.exports = { signUpPage, loginPage, dashbordPage, registration };
+    const isMatch = await user.validatePassword(req.body.password);
+    if (!isMatch)
+      return res.redirect(`/user/login?errorMessage=Password is wrong!`);
+
+    req.session.user = user;
+    res.redirect("/user/profile");
+  } catch (err) {
+    res.redirect(
+      url.format({
+        pathname: "/user/login",
+        query: {
+          errorMessage: "Server Error!",
+        },
+      })
+    );
+  }
+};
+
+module.exports = {
+  signUpPage,
+  loginPage,
+  profilePage,
+  registration,
+  getLogin,
+};
