@@ -1,11 +1,11 @@
 const createError = require("http-errors");
 
-const loginvalidator = async (req, res, next) => {
+const loginvalidator = (req, res, next) => {
   try {
     if (!req.body.username)
       return next(createError(400, "please enter username"));
 
-    const checkUsername = await user.exists({
+    const checkUsername = user.exists({
       username: req.body.username,
     });
 
@@ -17,6 +17,7 @@ const loginvalidator = async (req, res, next) => {
   } catch (error) {
     console.log(error.message);
   }
+  next();
 };
 
 module.exports = loginvalidator;

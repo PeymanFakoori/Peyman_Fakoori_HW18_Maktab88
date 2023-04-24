@@ -39,13 +39,13 @@ const singupValidator = async (req, res, next) => {
   // password
   if (!req.body.password) return next(createError(400, "password is required"));
 
-  if (!req.body.password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
-    return next(
-      createError(400, "1 letter and 1 Number is required in password")
-    );
+  //   if (!req.body.password(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
+  //     return next(
+  //       createError(400, "1 letter and 1 Number is required in password")
+  //     );
 
-  if (req.body.password.length <= 8)
-    return next(createError(400, "password must be 8 caracters"));
+  //   if (req.body.password.length <= 8)
+  //     return next(createError(400, "password must be 8 caracters"));
 
   // repat password
   if (req.body.password !== req.body.repeatPassword)
