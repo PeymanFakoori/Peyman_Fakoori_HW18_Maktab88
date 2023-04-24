@@ -11,6 +11,7 @@ const {
   profilePage,
   getLogin,
   logout,
+  removeUser,
 } = require("../controllers/userController");
 
 router.get("/signup", signUpPage);
@@ -20,5 +21,6 @@ router.get("/login", loginPage);
 router.post("/login", loginvalidator, getLogin);
 router.get("/profile", profilePage);
 router.get("/logout", logout);
+// router.delete("/:id", removeUser);
 
 module.exports = router;
