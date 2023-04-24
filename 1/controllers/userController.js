@@ -73,15 +73,15 @@ const logout = (req, res, next) => {
   res.redirect("/user/login");
 };
 
-// const removeUser = async (req, res, next) => {
-//   try {
-//     const userID = req.session.user._id;
-//     const removedUser = await User.findByIdAndDelete(userID);
-//     res.json(removedEmployee);
-//   } catch (error) {
-//     next(createError(500, "somthing went wrong"));
-//   }
-// };
+const removeUser = async (req, res, next) => {
+  try {
+    const userID = req.session.user._id;
+    const removedUser = await User.findByIdAndDelete(userID);
+    res.json(removedEmployee);
+  } catch (error) {
+    next(createError(500, "somthing went wrong"));
+  }
+};
 
 module.exports = {
   signUpPage,
