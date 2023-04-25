@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { getAll, creat, update, deleted } = require("../controller/studentCo");
-const { creatValid } = require("../middlewares/studentMid");
+const {
+  getAll,
+  creat,
+  update,
+  deleted,
+} = require("../controller/studentController");
+const { creatValid } = require("../middlewares/studentValidator");
 
 router.get("/getAll", getAll);
 

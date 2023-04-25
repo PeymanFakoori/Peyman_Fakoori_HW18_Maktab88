@@ -13,7 +13,6 @@ const registration = async (req, res, next) => {
     lastName: req.body.lastName,
     username: req.body.username,
     password: req.body.password,
-    repeatPassword: req.body.repeatPassword,
     role: req.body.role,
     gender: req.body.gender,
   });

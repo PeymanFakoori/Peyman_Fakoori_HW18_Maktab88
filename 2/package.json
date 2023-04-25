@@ -10,7 +10,6 @@
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
-    "mariadb": "^3.1.1",
     "morgan": "~1.9.1",
     "mysql2": "^3.2.3",
     "sequelize": "^6.31.0"

@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { getAll, creat, update, deleted } = require("../controller/invoiceCo");
-const { creatValid } = require("../middlewares/invoiceMid");
+const {
+  getAll,
+  creat,
+  update,
+  deleted,
+} = require("../controller/invoiceController");
+const { creatValid } = require("../middlewares/invoiceValidator");
 
 router.get("/getAll", getAll);
 

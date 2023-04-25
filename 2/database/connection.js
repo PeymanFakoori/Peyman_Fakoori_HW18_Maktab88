@@ -7,7 +7,7 @@ function DatabaseConnection() {
     process.env.DATABASE_PASSWORD,
     {
       host: "localhost",
-      dialect: "mariadb",
+      dialect: "mysql",
     }
   );
   this.testConnection = async () => {
@@ -15,7 +15,7 @@ function DatabaseConnection() {
       await this.sequelize.authenticate();
       console.log("Connection has been established successfully.");
     } catch (error) {
-      console.error("Unable to connect to the database:", e);
+      console.error("Unable to connect to the database:");
       process.exit(1);
     }
   };

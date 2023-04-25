@@ -1,5 +1,5 @@
 const createError = require("http-errors");
-const { invoice } = require("../models/invoice_model");
+const { invoice } = require("../models/invoiceModal");
 
 const creatValid = async (req, res, next) => {
   try {

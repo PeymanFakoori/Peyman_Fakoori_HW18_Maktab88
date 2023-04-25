@@ -32,15 +32,6 @@ const UserSchema = new mongoose.Schema(
         "1 letter and 1 Number is required in password",
       ],
     },
-    repeatPassword: {
-      type: String,
-      required: true,
-      minLength: 8,
-      match: [
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-        "1 letter and 1 Number is required in password",
-      ],
-    },
     gender: {
       type: String,
       enum: ["male", "female", "not-set"],
